@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ app_name }} — Gemini Flash AI Tutor</title>
+  <meta name="description" content="EduGenie advanced AI learning assistant powered by Gemini Flash.">
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <span class="eyebrow">GEMINI FLASH • AI LEARNING</span>
+        <h1>EduGenie</h1>
+        <p>Ask, learn, practice, summarize, quiz yourself, and build a complete learning roadmap.</p>
+      </div>
+      <div class="status-pill" id="statusPill">Checking Gemini…</div>
+    </header>
+
+    <section class="panel">
+      <div class="task-grid">
+        <button class="task-card active" data-task="qa">
+          <span>💡</span><strong>Ask</strong><small>Get an expert answer</small>
+        </button>
+        <button class="task-card" data-task="explain">
+          <span>🧠</span><strong>Explain</strong><small>Learn a concept deeply</small>
+        </button>
+        <button class="task-card" data-task="quiz">
+          <span>📝</span><strong>Quiz</strong><small>Generate MCQs</small>
+        </button>
+        <button class="task-card" data-task="summarize">
+          <span>📚</span><strong>Summarize</strong><small>Make revision notes</small>
+        </button>
+        <button class="task-card" data-task="learn">
+          <span>🚀</span><strong>Roadmap</strong><small>Build a study plan</small>
+        </button>
+        <button class="task-card" data-task="chat">
+          <span>💬</span><strong>Chat</strong><small>Continue a tutor session</small>
+        </button>
+      </div>
+
+      <form id="eduForm">
+        <div id="optionsGroup" class="options hidden">
+          <div>
+            <label for="level">Learner level</label>
+            <select id="level">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+          <div>
+            <label for="timeframe">Timeframe</label>
+            <input id="timeframe" value="8 weeks" maxlength="100">
+          </div>
+          <div id="quizCountWrap" class="hidden">
+            <label for="quizCount">Questions</label>
+            <select id="quizCount">
+              <option value="5">5</option>
+              <option value="7">7</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div id="summaryStyleWrap" class="hidden">
+            <label for="summaryStyle">Summary style</label>
+            <select id="summaryStyle">
+              <option value="quick">Quick revision</option>
+              <option value="detailed">Detailed</option>
+              <option value="exam">Exam notes</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="inputText" id="inputLabel">Your question</label>
+        <textarea id="inputText" rows="10" maxlength="12000"
+          placeholder="Example: Explain Newton's third law with a simple example."></textarea>
+
+        <button id="submitButton" class="primary" type="submit">Ask Gemini Flash</button>
+      </form>
+    </section>
+
+    <section class="result-section">
+      <div class="result-header">
+        <div>
+          <span class="result-kicker">AI RESULT</span>
+          <h2>EduGenie Response</h2>
+        </div>
+        <button id="copyButton" class="secondary" type="button" disabled>Copy</button>
+      </div>
+
+      <div id="loading" class="loading hidden">
+        <span class="spinner"></span> Gemini Flash is thinking…
+      </div>
+      <div id="error" class="error hidden"></div>
+
+      <article id="result" class="result" aria-live="polite">
+        <div class="empty-state">
+          <div class="empty-icon">✦</div>
+          <h3>Ready to learn?</h3>
+          <p>Choose a tool above and enter your topic, question, or study material.</p>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>EduGenie v2 • FastAPI + Gemini Flash</span>
+      <a href="/docs" target="_blank" rel="noreferrer">API Docs</a>
+    </footer>
+  </main>
+
+  <script src="{{ url_for('static', path='app.js') }}"></script>
+</body>
+</html>
